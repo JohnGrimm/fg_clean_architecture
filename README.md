@@ -33,21 +33,7 @@ Para executar o sistema, devemos primeiramente provisionar a INFRA necessária, 
 
 > O comando acima deve ser executado a partir da pasta raiz do projeto, onde encontramos o arquivo `docker-compose.yaml`
 
-Após toda a INFRA necessária estar de pé, bastar rodarmos o projeto. Para isto, estando na pasta raiz do projeto, execute os seguintes comandos:
-
-```shell
-❯ cd cmd/ordersystem
-❯ go run main.go wire_gen.go
-```
-
-Na janela do terminal, você deverá ver uma mensagem parecida com o exemplo abaixo:
-
-```shell
-❯ go run main.go wire_gen.go
-Starting web server on port :8000
-Starting gRPC server on port 50051
-Starting GraphQL server on port 8080
-```
+Após toda a INFRA necessária estar de pé, bastar rodarmos o projeto:
 
 ### Informações dos Serviços
 
@@ -65,4 +51,24 @@ Query
     - orders: [Order!]!
 Mutation
     - createOrder(input: OrderInput): Order
+```
+
+**gRPC**
+
+```bash
+evans -r repl -p 50051
+package pb
+service OrderService
+```
+
+- Create order:
+
+```bash
+call CreateOrder
+```
+
+- List all orders:
+
+```bash
+call ListOrders
 ```
